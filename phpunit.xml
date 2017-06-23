@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         stopOnFailure="true"
+         bootstrap = "vendor/autoload.php">
+    <filter>
+        <whitelist
+                addUncoveredFilesFromWhitelist="true"
+                processUncoveredFilesFromWhitelist="true">
+            <directory>./src/GildedRose/</directory>
+            <exclude>
+                <directory>./src/Tests/</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+
+    <whitelist processUncoveredFilesFromWhitelist="true">
+        <directory suffix=".php">./src/Tests/</directory>
+    </whitelist>
+
+    <logging>
+        <log type="coverage-html" target="./tests-coverage/"/>
+        <log type="coverage-clover" target="./tests-coverage/coverage.xml"/>
+    </logging>
+
+    <testsuites>
+        <testsuite name="Gilded Rose Unit Tests">
+            <directory>./src/Tests/</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

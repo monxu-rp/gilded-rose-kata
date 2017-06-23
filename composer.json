@@ -1,0 +1,30 @@
+{
+    "name": "monxu-rp/gilded-rose-kata",
+    "description": "Port of the Gilded Rose Kata for C# (https://github.com/NotMyself/GildedRose)",
+    "license": "MIT",
+    "keywords": ["kata","Gilded Rose"],
+    "homepage": "https://github.com/monxu-rp/gilded-rose-kata",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "5.7.*@dev",
+        "mockery/mockery": "dev-master@dev",
+        "phpspec/phpspec": "2.0.*@dev"
+    },
+    "authors": [
+        {
+            "name": "Ramon Puiggené",
+            "email": "ramonpuiggene@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Kata\\": "src/GildedRose",
+            "Tests\\": "src/Tests"
+
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "minimum-stability": "dev"
+}
