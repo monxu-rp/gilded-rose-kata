@@ -7,17 +7,12 @@ use GildedRose\Console\Program;
 
 class ProgramTest extends \PHPUnit_Framework_TestCase
 {
-    const CONJURED_MANA_CAKE = 'Conjured Mana Cake';
-    const AGED_BRIE = 'Aged Brie';
-    const SULFURAS_HAND_OF_RAGNAROS = 'Sulfuras, Hand of Ragnaros';
-    const BACKSTAGE_PASSES = 'Backstage passes to a TAFKAL80ETC concert';
-
     /**
      * @test
      */
     public function itShouldDecreaseByOneTheQualityWhenSellInIsMoreThanZero()
     {
-        $item = $this->buildItem(self::CONJURED_MANA_CAKE, 4, 5);
+        $item = $this->buildItem(Program::CONJURED_MANA_CAKE, 4, 5);
         $app = new Program([$item]);
 
         $app->UpdateQuality();
@@ -37,7 +32,7 @@ class ProgramTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldDecreaseTwiceAsFastWhenTheSellInDateHasExpire()
     {
-        $item = $this->buildItem(self::CONJURED_MANA_CAKE, 0, 5);
+        $item = $this->buildItem(Program::CONJURED_MANA_CAKE, 0, 5);
         $app = new Program([$item]);
 
         $app->UpdateQuality();
@@ -53,7 +48,7 @@ class ProgramTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldDecreaseQuantityUntilTheValueIsZero()
     {
-        $item = $this->buildItem(self::CONJURED_MANA_CAKE, 1, 2);
+        $item = $this->buildItem(Program::CONJURED_MANA_CAKE, 1, 2);
         $app = new Program([$item]);
 
         $app->UpdateQuality();
@@ -72,7 +67,7 @@ class ProgramTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldIncreaseTheQualityWhenTheItemIsAnAgedBrie()
     {
-        $item = $this->buildItem(self::AGED_BRIE, 2, 2);
+        $item = $this->buildItem(Program::AGED_BRIE, 2, 2);
         $app = new Program([$item]);
 
         $app->UpdateQuality();
@@ -88,7 +83,7 @@ class ProgramTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldIncreaseTheQualityByTwoOnceTheSellInHasExpiredWhenTheItemIsAnAgedBrie()
     {
-        $item = $this->buildItem(self::AGED_BRIE, 2, 2);
+        $item = $this->buildItem(Program::AGED_BRIE, 2, 2);
         $app = new Program([$item]);
 
         $app->UpdateQuality();
@@ -111,7 +106,7 @@ class ProgramTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldIncreaseTheQualityWithAMaximumOfFifty()
     {
-        $item = $this->buildItem(self::AGED_BRIE, 5, 48);
+        $item = $this->buildItem(Program::AGED_BRIE, 5, 48);
         $app = new Program([$item]);
 
         $app->UpdateQuality();
@@ -130,7 +125,7 @@ class ProgramTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldNeverDecreaseTheQualityOrHaveASellInDateWhenTheItemIsASulfuras()
     {
-        $item = $this->buildItem(self::SULFURAS_HAND_OF_RAGNAROS, 0, 80);
+        $item = $this->buildItem(Program::SULFURAS_HAND_OF_RAGNAROS, 0, 80);
         $app = new Program([$item]);
 
         $app->UpdateQuality();
@@ -149,7 +144,7 @@ class ProgramTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldIncreaseQualityByTwoWhenSellInIsLessThanElevenAndTheItemIsABackstagePasses()
     {
-        $item = $this->buildItem(self::BACKSTAGE_PASSES, 12, 20);
+        $item = $this->buildItem(Program::BACKSTAGE_PASSES, 12, 20);
         $app = new Program([$item]);
 
         $app->UpdateQuality();
@@ -171,7 +166,7 @@ class ProgramTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldIncreaseQualityByThreeWhenSellInIsLessThanSixAndTheItemIsABackstagePasses()
     {
-        $item = $this->buildItem(self::BACKSTAGE_PASSES, 7, 20);
+        $item = $this->buildItem(Program::BACKSTAGE_PASSES, 7, 20);
         $app = new Program([$item]);
 
         $app->UpdateQuality();
@@ -193,7 +188,7 @@ class ProgramTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldResetTheQualityAtZeroOnceTheSellInHasExpire()
     {
-        $item = $this->buildItem(self::BACKSTAGE_PASSES, 2, 20);
+        $item = $this->buildItem(Program::BACKSTAGE_PASSES, 2, 20);
         $app = new Program([$item]);
 
         $app->UpdateQuality();

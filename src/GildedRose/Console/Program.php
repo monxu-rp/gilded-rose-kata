@@ -47,27 +47,36 @@ namespace GildedRose\Console;
  */
 class Program
 {
+    const CONJURED_MANA_CAKE = 'Conjured Mana Cake';
+    const AGED_BRIE = 'Aged Brie';
+    const SULFURAS_HAND_OF_RAGNAROS = 'Sulfuras, Hand of Ragnaros';
+    const BACKSTAGE_PASSES = 'Backstage passes to a TAFKAL80ETC concert';
+    const ELIXIR_OF_THE_MONGOOSE = 'Elixir of the Mongoose';
+    const DEXTERITY_VEST = '+5 Dexterity Vest';
+
     private $items = array();
+
+
 
     public static function main()
     {
         echo 'OMGHAI!' . PHP_EOL;
 
         $app = new Program([
-            new Item(['name' => '+5 Dexterity Vest', 'sellIn' => 10, 'quality' => 20]),
-            new Item(['name' => 'Aged Brie', 'sellIn' => 2, 'quality' => 0]),
-            new Item(['name' => 'Aged Brie', 'sellIn' => -1, 'quality' => 0]),
-            new Item(['name' => 'Elixir of the Mongoose', 'sellIn' => 5, 'quality' => 7]),
-            new Item(['name' => 'Elixir of the Mongoose', 'sellIn' => -1, 'quality' => 7]),
-            new Item(['name' => 'Sulfuras, Hand of Ragnaros', 'sellIn' => 0, 'quality' => 80]),
-            new Item(['name' => 'Sulfuras, Hand of Ragnaros', 'sellIn' => -1, 'quality' => 80]),
-            new Item(['name' => 'Backstage passes to a TAFKAL80ETC concert', 'sellIn' => 15, 'quality' => 20]),
-            new Item(['name' => 'Backstage passes to a TAFKAL80ETC concert', 'sellIn' => 10, 'quality' => 49]),
-            new Item(['name' => 'Backstage passes to a TAFKAL80ETC concert', 'sellIn' => 5, 'quality' => 49]),
-            new Item(['name' => 'Backstage passes to a TAFKAL80ETC concert', 'sellIn' => 5, 'quality' => 48]),
-            new Item(['name' => 'Backstage passes to a TAFKAL80ETC concert', 'sellIn' => 5, 'quality' => 10]),
-            new Item(['name' => 'Backstage passes to a TAFKAL80ETC concert', 'sellIn' => -1, 'quality' => 10]),
-            new Item(['name' => 'Conjured Mana Cake','sellIn' => 3,'quality' => 6]),
+            new Item(['name' => self::DEXTERITY_VEST, 'sellIn' => 10, 'quality' => 20]),
+            new Item(['name' => self::AGED_BRIE, 'sellIn' => 2, 'quality' => 0]),
+            new Item(['name' => self::AGED_BRIE, 'sellIn' => -1, 'quality' => 0]),
+            new Item(['name' => self::ELIXIR_OF_THE_MONGOOSE, 'sellIn' => 5, 'quality' => 7]),
+            new Item(['name' => self::ELIXIR_OF_THE_MONGOOSE, 'sellIn' => -1, 'quality' => 7]),
+            new Item(['name' => self::SULFURAS_HAND_OF_RAGNAROS, 'sellIn' => 0, 'quality' => 80]),
+            new Item(['name' => self::SULFURAS_HAND_OF_RAGNAROS, 'sellIn' => -1, 'quality' => 80]),
+            new Item(['name' => self::BACKSTAGE_PASSES, 'sellIn' => 15, 'quality' => 20]),
+            new Item(['name' => self::BACKSTAGE_PASSES, 'sellIn' => 10, 'quality' => 49]),
+            new Item(['name' => self::BACKSTAGE_PASSES, 'sellIn' => 5, 'quality' => 49]),
+            new Item(['name' => self::BACKSTAGE_PASSES, 'sellIn' => 5, 'quality' => 48]),
+            new Item(['name' => self::BACKSTAGE_PASSES, 'sellIn' => 5, 'quality' => 10]),
+            new Item(['name' => self::BACKSTAGE_PASSES, 'sellIn' => -1, 'quality' => 10]),
+            new Item(['name' => self::CONJURED_MANA_CAKE,'sellIn' => 3,'quality' => 6]),
         ]);
 
         $app->UpdateQuality();
@@ -86,9 +95,9 @@ class Program
     public function UpdateQuality()
     {
         for ($i = 0; $i < count($this->items); $i++) {
-            if ($this->items[$i]->name != "Aged Brie" && $this->items[$i]->name != "Backstage passes to a TAFKAL80ETC concert") {
+            if ($this->items[$i]->name != self::AGED_BRIE && $this->items[$i]->name != self::BACKSTAGE_PASSES) {
                 if ($this->items[$i]->quality > 0) {
-                    if ($this->items[$i]->name != "Sulfuras, Hand of Ragnaros") {
+                    if ($this->items[$i]->name != self::SULFURAS_HAND_OF_RAGNAROS) {
                         $this->items[$i]->quality = $this->items[$i]->quality - 1;
                     }
                 }
@@ -96,7 +105,7 @@ class Program
                 if ($this->items[$i]->quality < 50) {
                     $this->items[$i]->quality = $this->items[$i]->quality + 1;
 
-                    if ($this->items[$i]->name == "Backstage passes to a TAFKAL80ETC concert") {
+                    if ($this->items[$i]->name == self::BACKSTAGE_PASSES) {
                         if ($this->items[$i]->sellIn < 11) {
                             if ($this->items[$i]->quality < 50) {
                                 $this->items[$i]->quality = $this->items[$i]->quality + 1;
@@ -112,15 +121,15 @@ class Program
                 }
             }
 
-            if ($this->items[$i]->name != "Sulfuras, Hand of Ragnaros") {
+            if ($this->items[$i]->name != self::SULFURAS_HAND_OF_RAGNAROS) {
                 $this->items[$i]->sellIn = $this->items[$i]->sellIn - 1;
             }
 
             if ($this->items[$i]->sellIn < 0) {
-                if ($this->items[$i]->name != "Aged Brie") {
-                    if ($this->items[$i]->name != "Backstage passes to a TAFKAL80ETC concert") {
+                if ($this->items[$i]->name != self::AGED_BRIE) {
+                    if ($this->items[$i]->name != self::BACKSTAGE_PASSES) {
                         if ($this->items[$i]->quality > 0) {
-                            if ($this->items[$i]->name != "Sulfuras, Hand of Ragnaros") {
+                            if ($this->items[$i]->name != self::SULFURAS_HAND_OF_RAGNAROS) {
                                 $this->items[$i]->quality = $this->items[$i]->quality - 1;
                             }
                         }
